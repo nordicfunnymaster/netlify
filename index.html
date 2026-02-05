@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lagersystem</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Lagersystem</h1>
+        <p>Hold oversikt over varer, antall og minimumsgrense.</p>
+      </header>
+
+      <section class="card">
+        <h2>Legg til vare</h2>
+        <form id="item-form" class="form-grid">
+          <label>
+            Varenavn
+            <input id="name" name="name" type="text" placeholder="f.eks. Skruer" required />
+          </label>
+          <label>
+            Kategori
+            <input id="category" name="category" type="text" placeholder="f.eks. Verktøy" required />
+          </label>
+          <label>
+            Antall
+            <input id="quantity" name="quantity" type="number" min="0" value="0" required />
+          </label>
+          <label>
+            Minimumsgrense
+            <input id="minStock" name="minStock" type="number" min="0" value="0" required />
+          </label>
+          <button type="submit">Legg til</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="toolbar">
+          <h2>Vareliste</h2>
+          <input id="search" type="search" placeholder="Søk etter navn eller kategori..." />
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Vare</th>
+                <th>Kategori</th>
+                <th>Antall</th>
+                <th>Min.grense</th>
+                <th>Status</th>
+                <th>Handling</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <template id="row-template">
+      <tr>
+        <td data-cell="name"></td>
+        <td data-cell="category"></td>
+        <td>
+          <input data-cell="quantity" type="number" min="0" />
+        </td>
+        <td>
+          <input data-cell="minStock" type="number" min="0" />
+        </td>
+        <td data-cell="status"></td>
+        <td class="actions">
+          <button data-action="save" class="save">Lagre</button>
+          <button data-action="delete" class="danger">Slett</button>
+        </td>
+      </tr>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
